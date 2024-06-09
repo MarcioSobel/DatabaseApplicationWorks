@@ -1,0 +1,17 @@
+services:
+  db_restaurant:
+    image: mysql:8.0
+    container_name: db_restaurant
+    restart: always
+    environment:
+      MYSQL_DATABASE: db_restaurant
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
