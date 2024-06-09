@@ -1,5 +1,5 @@
 -- Cliente que mais fez pedidos por ano?
-WITH ClienteGastos AS (
+WITH gastos_cliente AS (
     SELECT
         YEAR(mesa.data_hora_entrada) AS ano,
         cliente.nome_cliente AS cliente,
@@ -14,7 +14,7 @@ WITH ClienteGastos AS (
     JOIN tb_prato prato ON pedido.codigo_prato = prato.codigo_prato
     GROUP BY YEAR(mesa.data_hora_entrada), cliente.nome_cliente
 ) SELECT ano, cliente, total_gasto
-FROM ClienteGastos
+FROM gastos_cliente
 WHERE rn = 1
 ORDER BY ano;
 -- 2022, João Pedro	da Luz, 20216
